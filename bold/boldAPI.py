@@ -37,6 +37,8 @@ def get_country(process_id):
 
     country_string = '</country'
     filtered_list = [item for item in response.text.split('>')[1:] if country_string in item] # [1:] because the first is always xml header
+    if len(filtered_list) < 1:
+        return 'Unknown'
     country = filtered_list[0].replace(country_string, '')
     if country == '': country = 'Unknown'
     return(country)
